@@ -3,6 +3,7 @@ from fastapi import FastAPI, Request, Body, status
 from motor.motor_asyncio import AsyncIOMotorClient
 import uvicorn
 from routers.cars import router as cars_router
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
@@ -10,6 +11,15 @@ app.include_router(cars_router,prefix="/cars", tags=["cars"])
 
 DB_URL = config('DB_URL', cast=str)
 DB_NAME = config('DB_NAME', cast=str)
+
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials= True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 async def startup_db_client():

@@ -1,12 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from "./components/Layout";
+import Lorem from "./components/Lorem";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="bg-slate-500 text-white text-
-       center">This is a Tailwind styled site!</h1>
+    <Layout>
+    <div className="App">    
+      <Lorem title="Cars FARM"/>   
     </div>
+    </Layout>
   );
 }
 
